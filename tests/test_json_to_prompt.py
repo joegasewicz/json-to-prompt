@@ -24,10 +24,11 @@ class TestConvertDictToContext:
                 }
             ]
         }
-        convert_dict_to_context = JSONToPrompt(context_data=example, debug=True)
-        result = convert_dict_to_context.parse()
+        jtp = JSONToPrompt(debug=True)
+        jtp.add_dict(context_data=example)
+        jtp.parse()
         expected = "Title: Hello...\nSubtitle: Goodbye...\nCards:\n\t- ID: 1\n\t- Title: I'm a card..."
-        assert result.prompt == expected
+        assert jtp.prompt == expected
 
     def test_write_prompt_to_file(self, tmp_path):
         example = {
@@ -40,8 +41,9 @@ class TestConvertDictToContext:
                 }
             ]
         }
-        convert_dict_to_context = JSONToPrompt(context_data=example, debug=True)
-        convert_dict_to_context.parse()
+        jtp = JSONToPrompt(debug=True)
+        jtp.add_dict(context_data=example)
+        jtp.parse()
         expected = (
             "Title: Hello...\n"
             "Subtitle: Goodbye...\n"
@@ -52,18 +54,41 @@ class TestConvertDictToContext:
         # test the output file
         file_path = tmp_path / "prompt.txt"
 
-        convert_dict_to_context.write_prompt_to_file(str(file_path))
+        jtp.write_prompt_to_file(str(file_path))
 
         assert file_path.exists()
         actual = file_path.read_text()
         assert expected == actual
 
     def test_add_dict(self):
-        pass
+        example = {
+            "pet": "cat",
+        }
+        jtp = JSONToPrompt()
+        jtp.add_dict(example)
+        assert jtp.context_data == example
 
     def test_read_json(self):
-        pass
+        expected = {
+            "pet": "cat",
+        }
+        json_str = '{"pet": "cat"}'
+        jtp = JSONToPrompt()
+        jtp.read_json(json_str)
+        assert jtp.context_data == expected
 
     def test_read_json_file(self):
-        pass
-
+        expected = {
+            "Title": "Hello...",
+            "Subtitle": "Goodbye...",
+            "Cards": [
+                {
+                    "ID": 1,
+                    "Title": "I'm a card...",
+                }
+            ]
+        }
+        jtp = JSONToPrompt()
+        jtp.read_json_file("tests/example.json")
+        jtp.parse()
+        assert expected == jtp.context_data

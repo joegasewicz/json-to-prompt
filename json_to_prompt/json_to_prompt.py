@@ -1,4 +1,5 @@
 import json
+from typing import Dict
 
 from json_to_prompt.logger import logger
 
@@ -7,12 +8,12 @@ class JSONToPrompt:
 
     _prompt: str
 
+    context_data: Dict = {}
+
     def __init__(
         self,
-        context_data: dict,
         debug: bool = False,
     ):
-        self.context_data = context_data
         self.debug = debug
 
     def add_dict(self, context_data: dict) -> "JSONToPrompt":
@@ -41,7 +42,7 @@ class JSONToPrompt:
         """
         json_str = ""
         with open(json_file, "r") as f:
-            f.write(json_str)
+            json_str = f.read()
         self.read_json(json_str)
         return self
 
