@@ -9,7 +9,6 @@ convert_dict_to_context = JSONToPrompt(context_data=example, debug=True)
 result = convert_dict_to_context.parse() 
 ```
 
-
 ### Writing The Prompt Output To a File
 For examples if we have the following JSON file
 ```python
