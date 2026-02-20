@@ -33,7 +33,7 @@ data = {
 
 jtp = JSONToPrompt(debug=True)
 prompt = jtp.add_dict(data).parse().get_prompt()
-print([prompt])
+print(prompt)
 ```
 **Output**:
 ```text
