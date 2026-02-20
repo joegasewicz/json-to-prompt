@@ -8,8 +8,6 @@ This library is designed to transform dictionaries or JSON inputs into readable,
 - Read JSON strings directly
 - Load JSON from file
 - Write generated prompts to file
-- Simple, predictable formatting
-- Fully unit tested with pytest
 
 ### Usage
 
