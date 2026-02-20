@@ -1,15 +1,15 @@
 # JSON To Prompt
 A lightweight Python utility for converting structured JSON data into formatted prompt text.
 
-This project is designed to transform dictionaries or JSON inputs into readable, structured text prompts suitable for LLM workflows, templating systems, or downstream processing.
+This library is designed to transform dictionaries or JSON inputs into readable, structured text prompts suitable for LLM workflows, templating systems, or downstream processing.
 
 ## Features
--Convert Python dictionaries to formatted prompt strings
--Read JSON strings directly
--Load JSON from file
--Write generated prompts to file
--Simple, predictable formatting
--Fully unit tested with pytest
+- Convert Python dictionaries to formatted prompt strings
+- Read JSON strings directly
+- Load JSON from file
+- Write generated prompts to file
+- Simple, predictable formatting
+- Fully unit tested with pytest
 
 ### Usage
 
