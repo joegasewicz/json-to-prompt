@@ -67,6 +67,13 @@ class JSONToPrompt:
             )
         return self
 
+    def get_prompt(self) -> str:
+        """
+        Returns the formated prompt.
+        :return: String.
+        """
+        return self._prompt
+
     @property
     def prompt(self):
         return self._prompt

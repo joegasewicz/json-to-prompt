@@ -92,3 +92,20 @@ class TestConvertDictToContext:
         jtp.read_json_file("tests/example.json")
         jtp.parse()
         assert expected == jtp.context_data
+
+    def test_get_json(self):
+        example = {
+            "Title": "Hello...",
+            "Subtitle": "Goodbye...",
+            "Cards": [
+                {
+                    "ID": 1,
+                    "Title": "I'm a card...",
+                }
+            ]
+        }
+        jtp = JSONToPrompt(debug=True)
+        jtp.add_dict(context_data=example)
+        prompt = jtp.parse().get_prompt()
+        expected = "Title: Hello...\nSubtitle: Goodbye...\nCards:\n\t- ID: 1\n\t- Title: I'm a card..."
+        assert prompt == expected
