@@ -1,3 +1,5 @@
+import json
+
 from json_to_prompt.logger import logger
 
 
@@ -12,6 +14,36 @@ class JSONToPrompt:
     ):
         self.context_data = context_data
         self.debug = debug
+
+    def add_dict(self, context_data: dict) -> "JSONToPrompt":
+        """
+        Add a Python Dict to parse to a formatted prompt.
+        :param context_data:
+        :return:
+        """
+        self.context_data = context_data
+        return self
+
+    def read_json(self, json_str: str) -> "JSONToPrompt":
+        """
+        Add a JSON string to be parsed to a formatted prompt.
+        :param json_str:
+        :return:
+        """
+        self.context_data = json.loads(json_str)
+        return self
+
+    def read_json_file(self, json_file: str) -> "JSONToPrompt":
+        """
+        Read form a JSON file to be parsed to then be parsed to a formatted prompt
+        :param json_file:
+        :return:
+        """
+        json_str = ""
+        with open(json_file, "r") as f:
+            f.write(json_str)
+        self.read_json(json_str)
+        return self
 
     def parse(self) -> "JSONToPrompt":
         """

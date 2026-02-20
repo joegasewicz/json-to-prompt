@@ -57,3 +57,13 @@ class TestConvertDictToContext:
         assert file_path.exists()
         actual = file_path.read_text()
         assert expected == actual
+
+    def test_add_dict(self):
+        pass
+
+    def test_read_json(self):
+        pass
+
+    def test_read_json_file(self):
+        pass
+
